@@ -21,7 +21,7 @@ public class Hadoop_API {
             System.out.println(" CopyTOLocalFile :下载文件");
             System.out.println("     Rename      :重命名文件文件");
 
-            System.out.println("exit:退出");
+            System.out.println("      exit       :退出");
 
             System.out.println("-----------------------------------------------");
             System.out.print("请输入英文：");
@@ -34,6 +34,7 @@ public class Hadoop_API {
                         e.printStackTrace();
                     }
                     break;
+
                 case "Deletdir":
                     try {
                         H.Delect();
@@ -41,6 +42,7 @@ public class Hadoop_API {
                         e.printStackTrace();
                     }
                     break;
+
                 case "CopyFromLocalFile":
                     try {
                         H.CopyFromLocalFile();
@@ -48,6 +50,7 @@ public class Hadoop_API {
                         e.printStackTrace();
                     }
                     break;
+
                 case "CopyTOLocalFile":
                     try {
                         H.CopyToLocalFile();
@@ -55,6 +58,7 @@ public class Hadoop_API {
                         e.printStackTrace();
                     }
                     break;
+
                 case "Rename":
                     try {
                         H.Rename();
