@@ -13,7 +13,6 @@ import org.junit.Test;
 public class Hadoop_Connect {
 
     //建立文件夹
-
     public void Mkdirs() throws IOException, InterruptedException, URISyntaxException {
 
         // 1 获取文件系统
@@ -72,7 +71,6 @@ public class Hadoop_Connect {
     }
 
     //上传文件
-
     public void CopyFromLocalFile() throws IOException, InterruptedException, URISyntaxException {
 
         // 1 获取文件系统
@@ -104,7 +102,6 @@ public class Hadoop_Connect {
     }
 
     // 下载文件
-
     public void CopyToLocalFile() throws IOException, InterruptedException, URISyntaxException{
 
         // 1 获取文件系统
