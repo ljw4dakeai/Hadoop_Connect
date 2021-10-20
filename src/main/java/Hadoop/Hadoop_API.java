@@ -20,7 +20,7 @@ public class Hadoop_API {
 //            System.out.println("     Listfile    :列出文件");
 //            System.out.println("     ListFile    :列出文件夹");
             System.out.println("    ListFiles    :列出文件夹");
-            System.out.println("     Showfile    :查看文件内容");
+            System.out.println("     ShowFile    :查看文件内容");
             System.out.println("CopyFromLocalFile:上传文件");
             System.out.println(" CopyTOLocalFile :下载文件");
             System.out.println("     Rename      :重命名文件");
