@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
+import org.apache.hadoop.io.IOUtils;
 import org.junit.Test;
 
 public class Hadoop_Connect {
@@ -308,6 +309,48 @@ public class Hadoop_Connect {
             fsDataInputStream.close();
         }
         fs.close();
+    }
+
+    //复制文件
+    public void Copy() throws IOException, InterruptedException, URISyntaxException {
+
+        // 1 获取文件系统
+        Configuration configuration = new Configuration();
+
+        // 2 添加配置文件
+        Properties properties = new Properties();
+        properties.load(new FileInputStream("src/main/java/Hadoop/Hadoop.properties"));
+        String URI = properties.getProperty("URI");
+        String user = properties.getProperty("user");
+        FileSystem fs = FileSystem.get(new URI(URI), configuration, user);
+
+        // 3 复制
+        String filename_one;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入复制的文件名：例如：/user/zoujiahao1905140016/demo-three/banzhang.txt");
+        filename_one = scanner.next();
+
+        String filename_two;
+        Scanner scanner2 = new Scanner(System.in);
+        System.out.println("请输入复制后文件的文件名：例如：/user/zoujiahao1905140016/demo-three/banzhang123.txt");
+        filename_two = scanner2.next();
+        if (!fs.exists(new Path(filename_one))) {
+            System.out.println("要复制的文件不存在！");
+        }else{
+                FSDataInputStream fsDataInputStream = fs.open(new Path(filename_one));
+                fs.createNewFile(new Path(filename_two));
+                FSDataOutputStream fsDataOutputStream = fs.append(new Path(filename_two));
+                IOUtils.copyBytes(fsDataInputStream,fsDataOutputStream,configuration);
+                IOUtils.closeStream(fsDataInputStream);
+                IOUtils.closeStream(fsDataOutputStream);
+                fs.close();
+
+
+
+        }
+
+
+
     }
 
 }

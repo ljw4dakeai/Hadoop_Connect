@@ -16,13 +16,14 @@ public class Hadoop_API {
         while (loop){
             System.out.println("------------------------------------------------");
             System.out.println("      Mkdir      :创建文件夹");
-            System.out.println("    Deletedir    :删除文件夹");
+            System.out.println("    Deletdir     :删除文件夹");
 //            System.out.println("     Listfile    :列出文件");
 //            System.out.println("     ListFile    :列出文件夹");
             System.out.println("    ListFiles    :列出文件夹");
-            System.out.println("     ShowFile    :查看文件内容");
+            System.out.println("     Showfile    :查看文件内容");
             System.out.println("CopyFromLocalFile:上传文件");
             System.out.println(" CopyTOLocalFile :下载文件");
+            System.out.println("      Copy       :下载文件");
             System.out.println("     Rename      :重命名文件");
             System.out.println("      exit       :退出");
             System.out.println("-----------------------------------------------");
@@ -44,7 +45,6 @@ public class Hadoop_API {
                         e.printStackTrace();
                     }
                     break;
-
                 case "CopyFromLocalFile":
                     try {
                         H.CopyFromLocalFile();
@@ -104,6 +104,14 @@ public class Hadoop_API {
                         e.printStackTrace();
                     }
                     break;
+                case "Copy":
+                    try {
+                        H.Copy();
+                    } catch (InterruptedException | URISyntaxException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
                 default:
                     break;
             }
