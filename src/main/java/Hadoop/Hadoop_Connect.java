@@ -344,13 +344,7 @@ public class Hadoop_Connect {
                 IOUtils.closeStream(fsDataInputStream);
                 IOUtils.closeStream(fsDataOutputStream);
                 fs.close();
-
-
-
         }
-
-
-
     }
 
 }
