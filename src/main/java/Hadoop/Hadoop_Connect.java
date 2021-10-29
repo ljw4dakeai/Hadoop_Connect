@@ -124,7 +124,7 @@ public class Hadoop_Connect {
 
         String Filename ;
         Scanner scanner2 = new Scanner(System.in);
-        System.out.println("请输入你要下载到的文件夹名称：例如：e:/");
+        System.out.println("请输入你要下载到的文件夹名称：例如：e:/文件名");
         Filename = scanner2.next();
 
         // boolean delSrc 指是否将原文件删除
@@ -134,7 +134,14 @@ public class Hadoop_Connect {
         if (!fs.exists(new Path(filename))){
             System.out.println("要下载的文件不存在");
         }else {
-            fs.copyToLocalFile(false, new Path(filename), new Path(Filename), true);
+//            fs.copyToLocalFile(false, new Path(filename), new Path(Filename), true);
+
+            //用流实现
+            FSDataInputStream fsDataInputStream = fs.open(new Path(filename));
+            OutputStream  outputStream = new BufferedOutputStream(new FileOutputStream(new File(Filename)));
+            IOUtils.copyBytes(fsDataInputStream,outputStream,4096,true);
+            IOUtils.closeStream(fsDataInputStream);
+            IOUtils.closeStream(outputStream);
         }
 
         // 4 关闭资源
@@ -263,6 +270,7 @@ public class Hadoop_Connect {
                 System.out.println(fileStatus.getPath().toString());
             }
             RemoteIterator<LocatedFileStatus> iterator = fs.listFiles(new Path(Filenames),true);
+
             while (iterator.hasNext()){
                 LocatedFileStatus fileStatus = iterator.next();
                 Path fullpath = fileStatus.getPath();
