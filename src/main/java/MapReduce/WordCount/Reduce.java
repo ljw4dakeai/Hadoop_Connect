@@ -1,4 +1,4 @@
-package MapReduce;
+package MapReduce.WordCount;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;

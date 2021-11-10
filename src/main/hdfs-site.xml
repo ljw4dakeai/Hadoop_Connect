@@ -40,4 +40,10 @@
         <name>dfs.namenode.name.dir</name>
         <value>/data/hadoop/hdfs/name</value>
     </property>
+
+    <property>
+        <name>dfs.permissions</name>
+        <value>false</value>
+    </property>
+
 </configuration>
