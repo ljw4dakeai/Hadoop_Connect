@@ -20,6 +20,12 @@
 ![image](https://z3.ax1x.com/2021/11/11/I0HeD1.png)
 ## 5.MapReduce,使用前需要再配置一个Hadoop到自己电脑上，环境变量要设置成自己的电脑的环境变量，然后配置自己的类的运行环境
 
+###### 环境变量自需要配置recourse里面的五个（log4j不需要）
+然后里面的文件夹根据haadoop解压目录来
+我的自己hadoop电脑的配置环境（recourse里的是集群上的配置文件，里面的HAOOP_HOME,修改为自己的例如下面的）
+![image](https://z3.ax1x.com/2021/11/11/I0bsJO.png)
+![image](https://z3.ax1x.com/2021/11/11/I0bvT0.png)
+不要直接用虚拟机里面的，就好了
 
 
 
