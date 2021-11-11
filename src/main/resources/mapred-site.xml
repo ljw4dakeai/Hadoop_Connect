@@ -25,7 +25,7 @@
     </property>
     <!-- 这是3.2以上版本需要增加配置的，不配置运行mapreduce任务可能会有>问题，记得使用自己的路径 -->
     <property>
-        <name>mapreduce.application.classpath</name>
+        <name>yarn.application.classpath</name>
         <value>
             /software/hadoop-3.2.2/etc/hadoop,
             /software/hadoop-3.2.2/share/hadoop/common/*,

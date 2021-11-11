@@ -9,5 +9,6 @@
         <module name="Hadoop_Connect" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="8" />
   </component>
 </project>
