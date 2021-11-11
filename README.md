@@ -9,3 +9,17 @@
 使用前请修改
 
 ## 3.hafs-site.xml删除后导入自己的配置文件
+
+## 4.设置jar的时候新建一个recourse，不要使用自带的recourse
+![image](https://z3.ax1x.com/2021/11/11/I0HEv9.png)
+![image](https://z3.ax1x.com/2021/11/11/I0HZuR.png)
+![image](https://z3.ax1x.com/2021/11/11/I0Hk34.png)
+
+## 4.配置类的运行环境
+![image](https://z3.ax1x.com/2021/11/11/I0HAgJ.png)
+![image](https://z3.ax1x.com/2021/11/11/I0HeD1.png)
+## 5.MapReduce,使用前需要再配置一个Hadoop到自己电脑上，环境变量要设置成自己的电脑的环境变量，然后配置自己的类的运行环境
+
+
+
+
