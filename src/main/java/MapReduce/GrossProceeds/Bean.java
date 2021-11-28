@@ -8,39 +8,36 @@ import java.io.IOException;
 
 public class Bean implements Writable {
     public int ID;
-    public int Year;
+    public int num;
     public float Total;
 
     public Bean(){
         super();
     }
 
-    public Bean(int ID, int year, float total) {
-        super();
+    public Bean(int ID, int num, float total) {
         this.ID = ID;
-        Year = year;
-        Total = total;
+        this.num = num;
+        this.Total = total;
     }
 
-    //序列化
     @Override
     public void write(DataOutput dataOutput) throws IOException {
         dataOutput.writeInt(ID);
-        dataOutput.writeInt(Year);
+        dataOutput.writeInt(num);
         dataOutput.writeFloat(Total);
     }
 
-    //反序列化
     @Override
     public void readFields(DataInput dataInput) throws IOException {
-        ID= dataInput.readInt();
-        Year = dataInput.readInt();
-        Total = dataInput.readInt();
+        ID = dataInput.readInt();
+        num = dataInput.readInt();
+        Total = dataInput.readFloat();
     }
 
     @Override
     public String toString() {
-        return  ID + "\t" + Year + "\t" + Total;
+        return ID + "\t" + num + "\t" + Total;
     }
 
     public int getID() {
@@ -51,12 +48,12 @@ public class Bean implements Writable {
         this.ID = ID;
     }
 
-    public int getYear() {
-        return Year;
+    public int getNum() {
+        return num;
     }
 
-    public void setYear(int year) {
-        Year = year;
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public float getTotal() {
@@ -64,6 +61,8 @@ public class Bean implements Writable {
     }
 
     public void setTotal(float total) {
-        Total = total;
+        this.Total = total;
     }
 }
+
+

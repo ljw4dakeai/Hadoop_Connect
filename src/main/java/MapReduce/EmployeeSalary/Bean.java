@@ -69,8 +69,8 @@ public class Bean implements Writable {
     }
 
     public void set(int salary_one2,int salary_two2){
-        salary_one = salary_one2;
-        salary_two = salary_two2;
-        salary = salary_one2 + salary_two2;
+        this.salary_one = salary_one2;
+        this.salary_two = salary_two2;
+        this.salary = salary_one2 + salary_two2;
     }
 }

@@ -67,9 +67,9 @@ public class JobDrive {
 
 
         job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(Bean.class);
+        job.setMapOutputValueClass(MapReduce.EmployeeSalary.Bean.class);
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(Bean.class);
+        job.setOutputValueClass(MapReduce.EmployeeSalary.Bean.class);
         job.setMapperClass(MapReduce.EmployeeSalary.Map.class);
         job.setReducerClass(MapReduce.EmployeeSalary.Reduce.class);
 
@@ -87,6 +87,7 @@ public class JobDrive {
 
         //输入输出文件内容
         FileInputStream fileInputStream = new FileInputStream("/Users/zoujiahao/IDEA/Hadoop_Connect/src/main/java/MapReduce/EmployeeSalary/localinput.csv");
+        System.out.println("--------------------------------------------------------------------------------------------");
         System.out.println("input文件内容");
         String content;
         int size;
@@ -98,8 +99,8 @@ public class JobDrive {
         }
 
         System.out.println("输出文件内容");
-        System.out.println("part-r-00002");
-        FSDataInputStream fsDataInputStream = fs.open(new Path(output + "/part-r-00002"));
+        System.out.println("part-r-00000");
+        FSDataInputStream fsDataInputStream = fs.open(new Path(output + "/part-r-00000"));
         InputStreamReader inputStreamReader = new InputStreamReader(fsDataInputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
@@ -108,40 +109,53 @@ public class JobDrive {
             System.out.println(string);
             string = bufferedReader.readLine();
         }
+        System.out.println("--------------------------------------------------------------------------------------------");
+        System.out.println("part-r-00001");
+        FSDataInputStream fsDataInputStream1 = fs.open(new Path(output + "/part-r-00001"));
+        InputStreamReader inputStreamReader1 = new InputStreamReader(fsDataInputStream1);
+        BufferedReader bufferedReader1 = new BufferedReader(inputStreamReader1);
+
+        String string1 = bufferedReader1.readLine();
+        while (string1 != null){
+            System.out.println(string1);
+            string1 = bufferedReader1.readLine();
+        }
+        System.out.println("--------------------------------------------------------------------------------------------");
+        System.out.println("part-r-00002");
+        FSDataInputStream fsDataInputStream2 = fs.open(new Path(output + "/part-r-00002"));
+        InputStreamReader inputStreamReader2 = new InputStreamReader(fsDataInputStream2);
+        BufferedReader bufferedReader2 = new BufferedReader(inputStreamReader2);
+
+        String string2 = bufferedReader2.readLine();
+        while (string2 != null){
+            System.out.println(string2);
+            string2 = bufferedReader2.readLine();
+        }
+        System.out.println("--------------------------------------------------------------------------------------------");
+        System.out.println("part-r-00003");
+        FSDataInputStream fsDataInputStream3 = fs.open(new Path(output + "/part-r-00003"));
+        InputStreamReader inputStreamReader3 = new InputStreamReader(fsDataInputStream3);
+        BufferedReader bufferedReader3 = new BufferedReader(inputStreamReader3);
+
+        String string3 = bufferedReader3.readLine();
+        while (string3 != null){
+            System.out.println(string3);
+            string3 = bufferedReader3.readLine();
+        }
+
+        //关闭流
         bufferedReader.close();
         inputStreamReader.close();
         fsDataInputStream.close();
-
-
-
-//        System.out.println("part-r-00001");
-//        FSDataInputStream fsDataInputStream1 = fs.open(new Path(output + "/part-r-00001"));
-//        InputStreamReader inputStreamReader1 = new InputStreamReader(fsDataInputStream1);
-//        BufferedReader bufferedReader1 = new BufferedReader(inputStreamReader1);
-//
-//        String string1 = bufferedReader1.readLine();
-//        while (string1 != null){
-//            System.out.println(string1);
-//            string1 = bufferedReader.readLine();
-//        }
-//        bufferedReader.close();
-//        inputStreamReader.close();
-//        fsDataInputStream.close();
-
-
-//        System.out.println("part-r-00002");
-//        FSDataInputStream fsDataInputStream2 = fs.open(new Path(output + "/part-r-00002"));
-//        InputStreamReader inputStreamReader2 = new InputStreamReader(fsDataInputStream2);
-//        BufferedReader bufferedReader2 = new BufferedReader(inputStreamReader2);
-//
-//        String string2 = bufferedReader.readLine();
-//        while (string2 != null){
-//            System.out.println(string2);
-//            string2 = bufferedReader2.readLine();
-//        }
-//        bufferedReader.close();
-//        inputStreamReader.close();
-//        fsDataInputStream.close();
+        bufferedReader1.close();
+        inputStreamReader1.close();
+        fsDataInputStream1.close();
+        bufferedReader2.close();
+        inputStreamReader2.close();
+        fsDataInputStream2.close();
+        bufferedReader3.close();
+        inputStreamReader3.close();
+        fsDataInputStream3.close();
         fs.close();
 
 

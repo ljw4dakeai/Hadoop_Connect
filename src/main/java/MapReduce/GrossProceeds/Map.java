@@ -13,22 +13,25 @@ public class Map extends Mapper<LongWritable, Text, Text, Bean> {
 
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String[] split = value.toString().split(",");
-        String ID = split[1];
-        String Year = split[4];
-        String[] strings = Year.split("/");
+        String Data = split[2];
+        String[] strings = Data.split("-");
+
+        String ID = split[0];
+        String year= strings[0];
+        String Num = split[5];
         String Total = split[6];
 
         int id = Integer.parseInt(ID);
-        int year = Integer.parseInt(strings[1]);
+        int num = Integer.parseInt(Num);
         float total = Float.parseFloat(Total);
 
-        text.set(String.valueOf(year));
-        bean.setID(id);
+        text.set(year + "年");
+
         bean.setTotal(total);
-        bean.setYear(year);
+        bean.setNum(num);
+        bean.setID(id);
 
         context.write(text, bean);
-
 
     }
 }
