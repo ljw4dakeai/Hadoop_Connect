@@ -1,4 +1,4 @@
-package MapReduce.TopScore;
+package MapReduce.EmployeeSalary;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
@@ -9,7 +9,6 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -39,38 +38,44 @@ public class JobDrive {
         configuration.set("hadoop.tmp.dir", "/data/hadoop/tmp");
         configuration.set("fs.hdfs.impl", org.apache.hadoop.hdfs.DistributedFileSystem.class.getName());
 
+
         //dir配置
-        String input = "hdfs://192.168.95.136:9000/user/zoujiahao1905140016/MapReduce/TopScore/input.txt" ;
-        String output = "hdfs://192.168.95.136:9000/user/zoujiahao1905140016/MapReduce/TopScore/output";
+        String input = "hdfs://192.168.95.136:9000/user/zoujiahao1905140016/MapReduce/EmployeeSalary/input.csv" ;
+        String output = "hdfs://192.168.95.136:9000/user/zoujiahao1905140016/MapReduce/EmployeeSalary/output";
         Path inputpath = new Path(input);
         Path outputpath = new Path(output);
 
         //运行前删除outpath
         fs.delete(new Path(output));
 
+
         //上传input，需要可以重新上传
-        Path localinputpath = new Path("/Users/zoujiahao/IDEA/Hadoop_Connect/src/main/java/MapReduce/TopScore/localinput.txt");
-        Path localoutputpath = new Path("/Users/zoujiahao/IDEA/Hadoop_Connect/src/main/java/MapReduce/TopScore/localoutput");
+        Path localinputpath = new Path("/Users/zoujiahao/IDEA/Hadoop_Connect/src/main/java/MapReduce/EmployeeSalary/localinput.csv");
+        Path localoutputpath = new Path("/Users/zoujiahao/IDEA/Hadoop_Connect/src/main/java/MapReduce/EmployeeSalary/localoutput");
 
-        fs.copyFromLocalFile(localinputpath, inputpath);
+//        fs.copyFromLocalFile(localinputpath, inputpath);
 
-        String jar = "/Users/zoujiahao/IDEA/Hadoop_Connect/out/artifacts/Hadoop_Connect_MapReduce_TopScore_jar/Hadoop_Connect_MapReduce_TopScore.jar";
+        String jar = "/Users/zoujiahao/IDEA/Hadoop_Connect/out/artifacts/Hadoop_Connect_MapReduce_EmployeeSalary_jar/Hadoop_Connect_MapReduce_EmployeeSalary.jar";
 
 
         //job配置
         Job job = Job.getInstance(configuration);
-        job.setJar(jar);
 
         //设置jar包
-        job.setJarByClass(MapReduce.TopScore.JobDrive.class);
+        job.setJarByClass(MapReduce.EmployeeSalary.JobDrive.class);
+        job.setJar(jar);
 
 
         job.setMapOutputKeyClass(Text.class);
-        job.setMapOutputValueClass(IntWritable.class);
+        job.setMapOutputValueClass(Bean.class);
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
-        job.setMapperClass(MapReduce.TopScore.Map.class);
-        job.setReducerClass(MapReduce.TopScore.Reduce.class);
+        job.setOutputValueClass(Bean.class);
+        job.setMapperClass(MapReduce.EmployeeSalary.Map.class);
+        job.setReducerClass(MapReduce.EmployeeSalary.Reduce.class);
+
+        job.setPartitionerClass(MapReduce.EmployeeSalary.Part.class);
+//        设置reduceTask 的个数，影响最终的文件个数
+        job.setNumReduceTasks(4);
 
         //输入输出配置配置
         FileInputFormat.setInputPaths(job,inputpath);
@@ -81,19 +86,20 @@ public class JobDrive {
 
 
         //输入输出文件内容
-        FileInputStream fileInputStream_input = new FileInputStream("/Users/zoujiahao/IDEA/Hadoop_Connect/src/main/java/MapReduce/TopScore/localinput.txt");
+        FileInputStream fileInputStream = new FileInputStream("/Users/zoujiahao/IDEA/Hadoop_Connect/src/main/java/MapReduce/EmployeeSalary/localinput.csv");
         System.out.println("input文件内容");
-        String content ;
-        int size ;
+        String content;
+        int size;
         byte[] bytes = new byte[1024];
-        while ((size = fileInputStream_input.read(bytes)) != -1 ){
+        while ((size = fileInputStream.read(bytes)) != -1 ){
             content = new String(bytes, 0, size);
             System.out.println(content);
 
         }
 
-        System.out.println("output内容");
-        FSDataInputStream fsDataInputStream = fs.open(new Path(output + "/part-r-00000"));
+        System.out.println("输出文件内容");
+        System.out.println("part-r-00002");
+        FSDataInputStream fsDataInputStream = fs.open(new Path(output + "/part-r-00002"));
         InputStreamReader inputStreamReader = new InputStreamReader(fsDataInputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
@@ -105,17 +111,40 @@ public class JobDrive {
         bufferedReader.close();
         inputStreamReader.close();
         fsDataInputStream.close();
+
+
+
+//        System.out.println("part-r-00001");
+//        FSDataInputStream fsDataInputStream1 = fs.open(new Path(output + "/part-r-00001"));
+//        InputStreamReader inputStreamReader1 = new InputStreamReader(fsDataInputStream1);
+//        BufferedReader bufferedReader1 = new BufferedReader(inputStreamReader1);
+//
+//        String string1 = bufferedReader1.readLine();
+//        while (string1 != null){
+//            System.out.println(string1);
+//            string1 = bufferedReader.readLine();
+//        }
+//        bufferedReader.close();
+//        inputStreamReader.close();
+//        fsDataInputStream.close();
+
+
+//        System.out.println("part-r-00002");
+//        FSDataInputStream fsDataInputStream2 = fs.open(new Path(output + "/part-r-00002"));
+//        InputStreamReader inputStreamReader2 = new InputStreamReader(fsDataInputStream2);
+//        BufferedReader bufferedReader2 = new BufferedReader(inputStreamReader2);
+//
+//        String string2 = bufferedReader.readLine();
+//        while (string2 != null){
+//            System.out.println(string2);
+//            string2 = bufferedReader2.readLine();
+//        }
+//        bufferedReader.close();
+//        inputStreamReader.close();
+//        fsDataInputStream.close();
         fs.close();
 
-//        FileInputStream fileInputStream_output = new FileInputStream("/Users/zoujiahao/IDEA/Hadoop_Connect/src/main/java/MapReduce/TopScore/localoutput/part-r-00000");
-//        System.out.println("output文件内容");
-//        while ((size = fileInputStream_output.read(bytes)) != -1 ) {
-//            content = new String(bytes, 0, size);
-//            System.out.println(content);
-//        }
 
         System.exit(result ? 0 : 1);
-
     }
-
 }
