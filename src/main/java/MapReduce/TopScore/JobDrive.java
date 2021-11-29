@@ -82,6 +82,7 @@ public class JobDrive {
 
         //输入输出文件内容
         FileInputStream fileInputStream_input = new FileInputStream("/Users/zoujiahao/IDEA/Hadoop_Connect/src/main/java/MapReduce/TopScore/localinput.txt");
+        System.out.println("--------------------------------------------------------------------------------------------");
         System.out.println("input文件内容");
         String content ;
         int size ;
