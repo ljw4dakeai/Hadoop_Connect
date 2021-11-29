@@ -55,7 +55,7 @@ public class JobDrive {
         Path localinputpath = new Path("/Users/zoujiahao/IDEA/Hadoop_Connect/src/main/java/MapReduce/WordCount/localinput.txt");
         Path localoutputpath = new Path("/Users/zoujiahao/IDEA/Hadoop_Connect/src/main/java/MapReduce/WordCount/localoutput");
 
-        fs.copyFromLocalFile(localinputpath, inputpath);
+//        fs.copyFromLocalFile(localinputpath, inputpath);
 
         String jar = "/Users/zoujiahao/IDEA/Hadoop_Connect/out/artifacts/Hadoop_Connect_MapReduce_WordCount_jar/Hadoop_Connect_MapReduce_WordCount.jar";
 

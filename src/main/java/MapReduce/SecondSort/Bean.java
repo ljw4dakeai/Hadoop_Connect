@@ -57,6 +57,33 @@ public class Bean implements WritableComparable<Bean> {
 
     @Override
     public int compareTo(Bean o) {
-        return 0;
+
+        if (First != o.First)
+            return First < o.First ? 1 : -1;
+        else if (Second != o.Second)
+            return Second < o.Second ? -1 : 1;
+        else
+            return 0;
     }
+
+    @Override
+    public int  hashCode(){
+
+        return First * 13 + Second;
+    }
+
+    @Override
+    public boolean equals(Object second){
+        if (second == null)
+            return false;
+        if (this == second)
+            return true;
+        if (second instanceof Bean) {
+            Bean r = (Bean) second;
+            return r.First == First && r.Second == Second;
+        }
+        else
+            return false;
+    }
+
 }
