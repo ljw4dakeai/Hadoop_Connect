@@ -11,6 +11,7 @@
 ## 3.hafs-site.xml删除后导入自己的配置文件
 
 ## 4.设置jar的时候新建一个recourse，不要使用自带的recourse
+修改项目逻辑以后，需要重新打包jar包
 ![image](https://z3.ax1x.com/2021/11/11/I0HEv9.png)
 ![image](https://z3.ax1x.com/2021/11/11/I0HZuR.png)
 ![image](https://z3.ax1x.com/2021/11/11/I0Hk34.png)
