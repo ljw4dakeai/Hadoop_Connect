@@ -1,4 +1,4 @@
-package MapReduce.EmpDept.DeptSalary;
+package MapReduce.EmpDept.DeptEmpJoin;
 
 import org.apache.hadoop.io.Writable;
 
@@ -7,32 +7,34 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 public  class Bean implements Writable {
-    public String EmpName;
-    public String EmpData;
-    public int EmpSalay_one;
-    public int EmpSalay_two;
-    public int EmpSalay;
-    public String DeptNum;
-    public String DeptName;
+    public String EmpName  = " ";
+    public String EmpData = " ";
+    public int EmpSalay_one = 0;
+    public int EmpSalay_two = 0;
+    public int EmpSalay = 0;
+    public String DeptNum = " ";
+    public String DeptName = " ";
+    public String flage = "";
 
-    public Bean(){
+    public Bean() {
         super();
     }
 
-    public Bean(String empName, String empData, int empSalay_one, int empSalay_two, String deptNum, String deptName) {
+    public Bean(String empName, String empData, int empSalay_one, int empSalay_two, int empSalay, String deptNum, String deptName, String flage) {
         super();
         EmpName = empName;
         EmpData = empData;
         EmpSalay_one = empSalay_one;
         EmpSalay_two = empSalay_two;
-        EmpSalay = empSalay_one + empSalay_two;
+        EmpSalay = empSalay;
         DeptNum = deptNum;
         DeptName = deptName;
+        this.flage = flage;
     }
 
     @Override
     public String toString() {
-        return DeptNum + "\t" + EmpName + "\t" + EmpData + "\t" +EmpSalay_one+ "\t" + EmpSalay_two + "\t" + EmpSalay;
+        return flage + "\t" + DeptNum + "\t" + DeptName + "\t" + EmpName + "\t" + EmpData + "\t" +EmpSalay_one+ "\t" + EmpSalay_two + "\t" + EmpSalay;
     }
 
     @Override
@@ -44,6 +46,7 @@ public  class Bean implements Writable {
         dataOutput.writeInt(EmpSalay);
         dataOutput.writeUTF(DeptNum);
         dataOutput.writeUTF(DeptName);
+        dataOutput.writeUTF(flage);
     }
 
     @Override
@@ -55,6 +58,7 @@ public  class Bean implements Writable {
         EmpSalay = dataInput.readInt();
         DeptNum = dataInput.readUTF();
         DeptName = dataInput.readUTF();
+        flage = dataInput.readUTF();
 
     }
 
@@ -112,5 +116,13 @@ public  class Bean implements Writable {
 
     public void setDeptName(String deptName) {
         DeptName = deptName;
+    }
+
+    public String getFlage() {
+        return flage;
+    }
+
+    public void setFlage(String flage) {
+        this.flage = flage;
     }
 }
