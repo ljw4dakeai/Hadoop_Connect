@@ -355,9 +355,6 @@ public class Hadoop_Connect {
         }
     }
 
-
-
-
 }
 
 
