@@ -1,5 +1,7 @@
 package MapReduce.EmpDept.DeptEmpJoin;
 
+//reduce端的join
+
 import MapReduce.EmpDept.DeptEmpJoin.Bean;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.hadoop.conf.Configuration;
