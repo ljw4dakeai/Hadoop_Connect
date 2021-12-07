@@ -60,7 +60,7 @@ public class Map extends Mapper<LongWritable, Text, Text, Bean> {
 
     public void map(LongWritable key, Text value, Context context)throws IOException, InterruptedException{
 
-        //7369,SMITH,CLERK,7902,1980/12/17,800,,
+        //7369,SMITH,CLERK,7902,1980/12/17,800,,10
         String[] split = value.toString().split(",");
 
         if(split.length == 8) {
